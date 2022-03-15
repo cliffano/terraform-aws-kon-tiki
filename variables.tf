@@ -4,19 +4,19 @@ variable "acm_certificate_arn" {
   description = ""
 }
 
-variable "bucket_cdn_log" {
+variable "s3_bucket_cdn_log" {
   type        = string
   default     = null
   description = ""
 }
 
-variable "bucket_site" {
+variable "s3_bucket_site" {
   type        = string
   default     = null
   description = ""
 }
 
-variable "bucket_gallery" {
+variable "s3_bucket_gallery" {
   type        = string
   default     = null
   description = ""

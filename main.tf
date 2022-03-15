@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "site" {
-    bucket = var.bucket_site
+    bucket = var.s3_bucket_site
     acl = "private"
     policy = <<EOF
 {
@@ -19,7 +19,7 @@ resource "aws_s3_bucket" "site" {
       "Principal": {
           "AWS": "${aws_cloudfront_origin_access_identity.cdn_oai.iam_arn}"
       },
-      "Resource": "arn:aws:s3:::${var.bucket_site}/*"
+      "Resource": "arn:aws:s3:::${var.s3_bucket_site}/*"
     }
   ]
 }
@@ -45,7 +45,7 @@ resource "aws_s3_bucket_public_access_block" "site_private" {
 }
 
 resource "aws_s3_bucket" "gallery" {
-    bucket = var.bucket_gallery
+    bucket = var.s3_bucket_gallery
     acl = "private"
     tags = {
         project = "kon-tiki"
@@ -64,13 +64,13 @@ resource "aws_s3_bucket_public_access_block" "gallery_private" {
 }
 
 resource "aws_cloudfront_origin_access_identity" "cdn_oai" {
-  comment = "Origin access identity for destination S3-${var.bucket_site}"
+  comment = "Origin access identity for destination S3-${var.s3_bucket_site}"
 }
 
 resource "aws_cloudfront_distribution" "cdn" {
   origin {
     domain_name = aws_s3_bucket.site.bucket_regional_domain_name
-    origin_id   = "S3-${var.bucket_site}"
+    origin_id   = "S3-${var.s3_bucket_site}"
     s3_origin_config {
       origin_access_identity = aws_cloudfront_origin_access_identity.cdn_oai.cloudfront_access_identity_path
     }
@@ -78,13 +78,13 @@ resource "aws_cloudfront_distribution" "cdn" {
 
   enabled             = true
   is_ipv6_enabled     = true
-  comment             = "CDN distribution for ${var.bucket_site}"
+  comment             = "CDN distribution for ${var.s3_bucket_site}"
   default_root_object = "index.html"
 
   logging_config {
     include_cookies = false
-    bucket          = var.bucket_cdn_log
-    prefix          = var.bucket_site
+    bucket          = var.s3_bucket_cdn_log
+    prefix          = var.s3_bucket_site
   }
 
   aliases = [var.route53_domain_name]
@@ -93,7 +93,7 @@ resource "aws_cloudfront_distribution" "cdn" {
     allowed_methods        = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
     cached_methods         = ["GET", "HEAD"]
     compress               = true
-    target_origin_id       = "S3-${var.bucket_site}"
+    target_origin_id       = "S3-${var.s3_bucket_site}"
     viewer_protocol_policy = "redirect-to-https"
     min_ttl                = 0
     default_ttl            = 3600
