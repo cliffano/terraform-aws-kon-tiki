@@ -22,6 +22,12 @@ variable "s3_bucket_gallery" {
   description = ""
 }
 
+variable "enable_s3_bucket_gallery" {
+  type        = boolean
+  default     = false
+  description = ""
+}
+
 variable "lambda_origin_request_arn" {
   type        = string
   default     = null

@@ -45,8 +45,9 @@ resource "aws_s3_bucket_public_access_block" "site_private" {
 }
 
 resource "aws_s3_bucket" "gallery" {
+    count  = var.enable_s3_bucket_gallery ? 1 : 0
     bucket = var.s3_bucket_gallery
-    acl = "private"
+    acl    = "private"
     tags = {
         project = "kon-tiki"
     }
