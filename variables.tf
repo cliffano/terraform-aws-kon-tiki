@@ -23,7 +23,7 @@ variable "s3_bucket_gallery" {
 }
 
 variable "enable_s3_bucket_gallery" {
-  type        = boolean
+  type        = bool
   default     = false
   description = ""
 }
