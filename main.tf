@@ -88,6 +88,8 @@ resource "aws_cloudfront_distribution" "cdn" {
     prefix          = var.s3_bucket_site
   }
 
+  aliases = [var.route53_domain_name]
+
   default_cache_behavior {
     allowed_methods        = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
     cached_methods         = ["GET", "HEAD"]
