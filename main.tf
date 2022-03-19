@@ -55,9 +55,8 @@ resource "aws_s3_bucket" "gallery" {
 }
 
 resource "aws_s3_bucket_public_access_block" "gallery_private" {
-
-    bucket = length(aws_s3_bucket.gallery) >= 1 ? aws_s3_bucket.gallery[0].id : null
-
+    count  = var.enable_s3_bucket_gallery ? 1 : 0
+    bucket = aws_s3_bucket.gallery[0].id
     block_public_acls       = true
     block_public_policy     = true
     ignore_public_acls      = true
