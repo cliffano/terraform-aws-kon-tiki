@@ -30,7 +30,7 @@ variable "enable_s3_bucket_gallery" {
 
 variable "s3_bucket_gallery" {
   type        = string
-  default     = null
+  default     = "kon-tiki-s3-bucket-gallery"
   description = "Name of S3 bucket for storing gallery images"
 }
 
@@ -54,6 +54,6 @@ variable "enable_lambda_origin_request" {
 
 variable "lambda_origin_request_arn" {
   type        = string
-  default     = null
+  default     = "kon-tiki-lambda-origin-request-arn"
   description = "ARN of Lambda Function to be used as origin-request CloudFront Lambda@Edge"
 }
