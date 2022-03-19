@@ -109,7 +109,7 @@ resource "aws_cloudfront_distribution" "cdn" {
     }
     lambda_function_association {
       event_type   = "origin-request"
-      lambda_arn   = var.lambda_origin_request_arn
+      lambda_arn   = var.enable_lambda_origin_request ? var.lambda_origin_request_arn : null
       include_body = false
     }
   }

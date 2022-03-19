@@ -46,6 +46,12 @@ variable "route53_domain_zoneid" {
   description = "Route53 hosted zone where the domain record will be added to"
 }
 
+variable "enable_lambda_origin_request" {
+  type        = bool
+  default     = false
+  description = "Enable the provisioning of CloudFront Lambda Edge origin request"
+}
+
 variable "lambda_origin_request_arn" {
   type        = string
   default     = null
