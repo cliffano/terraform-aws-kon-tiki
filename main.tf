@@ -137,7 +137,7 @@ resource "aws_cloudfront_distribution" "cdn" {
 
 resource "aws_route53_record" "domain" {
    name = var.route53_domain_name
-   zone_id = aws_route53_zone.zone.zone_id
+   zone_id = data.aws_route53_zone.zone.zone_id
    type = "A"
    alias {
      name = aws_cloudfront_distribution.cdn.domain_name
