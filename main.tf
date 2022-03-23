@@ -91,7 +91,7 @@ resource "aws_cloudfront_distribution" "cdn" {
     prefix          = var.s3_bucket_site
   }
 
-  aliases = [var.route53_domain_name]
+  aliases = [var.route53_domain]
 
   default_cache_behavior {
     allowed_methods        = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
@@ -136,7 +136,7 @@ resource "aws_cloudfront_distribution" "cdn" {
 }
 
 resource "aws_route53_record" "domain" {
-   name = var.route53_domain_name
+   name = var.route53_domain
    zone_id = data.aws_route53_zone.zone.zone_id
    type = "A"
    alias {

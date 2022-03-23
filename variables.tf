@@ -34,7 +34,7 @@ variable "s3_bucket_gallery" {
   description = "Name of S3 bucket for storing gallery images"
 }
 
-variable "route53_domain_name" {
+variable "route53_domain" {
   type        = string
   default     = null
   description = "Route53 record to be used as the domain name of the web site"
