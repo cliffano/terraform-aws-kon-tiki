@@ -2,10 +2,6 @@ provider "aws" {
     region = var.region
 }
 
-data "aws_route53_zone" "zone" {
-    name = var.route53_zone
-} 
-
 resource "aws_s3_bucket" "site" {
     bucket = var.s3_bucket_site
     acl = "private"
@@ -137,7 +133,7 @@ resource "aws_cloudfront_distribution" "cdn" {
 
 resource "aws_route53_record" "domain" {
    name = var.route53_domain
-   zone_id = data.aws_route53_zone.zone.zone_id
+   zone_id = "${var.route53_domain_zoneid}"
    type = "A"
    alias {
      name = aws_cloudfront_distribution.cdn.domain_name

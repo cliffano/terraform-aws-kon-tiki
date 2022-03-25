@@ -40,10 +40,10 @@ variable "route53_domain" {
   description = "Route53 record to be used as the domain name of the web site"
 }
 
-variable "route53_zone" {
+variable "route53_domain_zoneid" {
   type        = string
   default     = null
-  description = "Route53 hosted zone name where the domain record will be added to"
+  description = "Route53 hosted zone where the domain record will be added to"
 }
 
 variable "enable_lambda_origin_request" {
