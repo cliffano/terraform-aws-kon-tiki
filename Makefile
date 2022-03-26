@@ -1,6 +1,12 @@
-ci: lint
+ci: clean init lint
 
-lint:
+clean:
+	rm -rf .terraform
+
+init:
+	terraform init
+
+lint: init
 	terraform validate
 
-.PHONY: lint
+.PHONY: clean init lint
