@@ -22,16 +22,16 @@ variable "s3_bucket_site" {
   description = "Name of S3 bucket for storing web site content"
 }
 
-variable "enable_s3_bucket_gallery" {
+variable "enable_s3_bucket_assets" {
   type        = bool
   default     = false
-  description = "Enable the provisioning of S3 bucket for gallery images"
+  description = "Enable the provisioning of S3 bucket for assets files"
 }
 
-variable "s3_bucket_gallery" {
+variable "s3_bucket_assets" {
   type        = string
-  default     = "kon-tiki-s3-bucket-gallery"
-  description = "Name of S3 bucket for storing gallery images"
+  default     = "kon-tiki-s3-bucket-assets"
+  description = "Name of S3 bucket for storing assets files"
 }
 
 variable "route53_domain" {
