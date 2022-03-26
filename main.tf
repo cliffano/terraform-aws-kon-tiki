@@ -1,5 +1,6 @@
 provider "aws" {
-    region = var.region
+    region  = var.region
+    version = "~> 3.37"
 }
 
 resource "aws_s3_bucket" "site" {
@@ -133,7 +134,7 @@ resource "aws_cloudfront_distribution" "cdn" {
 
 resource "aws_route53_record" "domain" {
    name = var.route53_domain
-   zone_id = "${var.route53_zone_id}"
+   zone_id = var.route53_zone_id
    type = "A"
    alias {
      name = aws_cloudfront_distribution.cdn.domain_name
