@@ -45,9 +45,9 @@ resource "aws_s3_bucket_public_access_block" "site_private" {
     restrict_public_buckets = true
 }
 
-resource "aws_s3_bucket" "assets" {
-    count  = var.enable_s3_bucket_assets ? 1 : 0
-    bucket = var.s3_bucket_assets
+resource "aws_s3_bucket" "extras" {
+    count  = var.enable_s3_bucket_extras ? 1 : 0
+    bucket = var.s3_bucket_extras
     acl    = "private"
     tags = {
         project = "kon-tiki"
@@ -55,9 +55,9 @@ resource "aws_s3_bucket" "assets" {
     force_destroy = true
 }
 
-resource "aws_s3_bucket_public_access_block" "assets_private" {
-    count  = var.enable_s3_bucket_assets ? 1 : 0
-    bucket = aws_s3_bucket.assets[0].id
+resource "aws_s3_bucket_public_access_block" "extras_private" {
+    count  = var.enable_s3_bucket_extras ? 1 : 0
+    bucket = aws_s3_bucket.extras[0].id
     block_public_acls       = true
     block_public_policy     = true
     ignore_public_acls      = true
