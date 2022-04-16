@@ -144,7 +144,7 @@ resource "aws_route53_record" "domain" {
   }
 }
 
-resource "aws_route53_record" "domain" {
+resource "aws_route53_record" "domain_proxy" {
   count   = var.enable_route53_domain_proxy ? 1 : 0
   name    = var.route53_domain
   zone_id = var.route53_zone_id
