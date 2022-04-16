@@ -133,12 +133,22 @@ resource "aws_cloudfront_distribution" "cdn" {
 }
 
 resource "aws_route53_record" "domain" {
-   name = var.route53_domain
-   zone_id = var.route53_zone_id
-   type = "A"
-   alias {
-     name = aws_cloudfront_distribution.cdn.domain_name
-     zone_id = aws_cloudfront_distribution.cdn.hosted_zone_id
-     evaluate_target_health = true
-   }
+  count   = var.enable_route53_domain_proxy ? 0 : 1
+  name    = var.route53_domain
+  zone_id = var.route53_zone_id
+  type = "A"
+  alias {
+    name                   = aws_cloudfront_distribution.cdn.domain_name
+    zone_id                = aws_cloudfront_distribution.cdn.hosted_zone_id
+    evaluate_target_health = true
+  }
+}
+
+resource "aws_route53_record" "domain" {
+  count   = var.enable_route53_domain_proxy ? 1 : 0
+  name    = var.route53_domain
+  zone_id = var.route53_zone_id
+  type    = "CNAME"
+  ttl     = "60"
+  records = [var.route53_domain_proxy]
 }
