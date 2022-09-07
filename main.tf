@@ -1,6 +1,14 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "aws"
+      version = "~> 3.37"
+    }
+  }
+}
+
 provider "aws" {
     region  = var.region
-    version = "~> 3.37"
 }
 
 resource "aws_s3_bucket" "site" {
