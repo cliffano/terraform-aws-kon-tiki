@@ -58,6 +58,18 @@ variable "route53_domain_proxy" {
   description = "Name of Route53 CNAME record which will proxy inbound requests prior to reaching the CDN"
 }
 
+variable "enable_lambda_viewer_request" {
+  type        = bool
+  default     = false
+  description = "Enable the provisioning of CloudFront Lambda Edge viewer request"
+}
+
+variable "lambda_viewer_request_arn" {
+  type        = string
+  default     = "kon-tiki-lambda-viewer-request-arn"
+  description = "ARN of Lambda Function to be used as viewer-request CloudFront Lambda@Edge"
+}
+
 variable "enable_lambda_origin_request" {
   type        = bool
   default     = false

@@ -116,6 +116,11 @@ resource "aws_cloudfront_distribution" "cdn" {
       }
     }
     lambda_function_association {
+      event_type   = "viewer-request"
+      lambda_arn   = var.enable_lambda_viewer_request ? var.lambda_viewer_request_arn : null
+      include_body = false
+    }
+    lambda_function_association {
       event_type   = "origin-request"
       lambda_arn   = var.enable_lambda_origin_request ? var.lambda_origin_request_arn : null
       include_body = false
