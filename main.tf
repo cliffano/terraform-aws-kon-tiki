@@ -14,6 +14,7 @@ provider "aws" {
 resource "aws_s3_bucket" "site" {
     bucket = var.s3_bucket_site
     acl = "private"
+
     policy = <<EOF
 {
   "Id": "bucket_policy_site",
@@ -33,13 +34,14 @@ resource "aws_s3_bucket" "site" {
   ]
 }
 EOF
+
     website {
         index_document = "index.html"
         error_document = "404.html"
     }
-    tags = {
-        project = "kon-tiki"
-    }
+
+    tags = var.tags
+
     force_destroy = true
 }
 
@@ -55,17 +57,18 @@ resource "aws_s3_bucket_public_access_block" "site_private" {
 
 resource "aws_s3_bucket" "extras" {
     count  = var.enable_s3_bucket_extras ? 1 : 0
-    bucket = var.s3_bucket_extras
+    bucket = var.s3_bucket_extras[0]
+
     acl    = "private"
-    tags = {
-        project = "kon-tiki"
-    }
+    tags   = var.tags
+
     force_destroy = true
 }
 
 resource "aws_s3_bucket_public_access_block" "extras_private" {
     count  = var.enable_s3_bucket_extras ? 1 : 0
     bucket = aws_s3_bucket.extras[0].id
+
     block_public_acls       = true
     block_public_policy     = true
     ignore_public_acls      = true
@@ -107,6 +110,7 @@ resource "aws_cloudfront_distribution" "cdn" {
     min_ttl                = 0
     default_ttl            = 3600
     max_ttl                = 86400
+
     forwarded_values {
       query_string = false
       headers      = ["Origin"]
@@ -115,16 +119,20 @@ resource "aws_cloudfront_distribution" "cdn" {
         forward = "none"
       }
     }
+
     lambda_function_association {
       count        = var.enable_lambda_viewer_request ? 1 : 0
-      event_type   = "viewer-request"
       lambda_arn   = var.lambda_viewer_request_arn[0]
+
+      event_type   = "viewer-request"
       include_body = false
     }
+
     lambda_function_association {
       count        = var.enable_lambda_origin_request ? 1 : 0
-      event_type   = "origin-request"
       lambda_arn   = var.lambda_origin_request_arn[0]
+
+      event_type   = "origin-request"
       include_body = false
     }
   }
@@ -137,9 +145,7 @@ resource "aws_cloudfront_distribution" "cdn" {
     }
   }
 
-  tags = {
-      project = "kon-tiki"
-  }
+  tags = var.tags
 
   viewer_certificate {
     acm_certificate_arn = var.acm_certificate_arn
@@ -149,9 +155,11 @@ resource "aws_cloudfront_distribution" "cdn" {
 
 resource "aws_route53_record" "domain" {
   count   = var.enable_route53_domain_proxy ? 0 : 1
+
   name    = var.route53_domain
   zone_id = var.route53_zone_id
-  type = "A"
+  type    = "A"
+
   alias {
     name                   = aws_cloudfront_distribution.cdn.domain_name
     zone_id                = aws_cloudfront_distribution.cdn.hosted_zone_id
@@ -161,9 +169,10 @@ resource "aws_route53_record" "domain" {
 
 resource "aws_route53_record" "domain_proxy" {
   count   = var.enable_route53_domain_proxy ? 1 : 0
+  records = [var.route53_domain_proxy[0]]
+
   name    = var.route53_domain
   zone_id = var.route53_zone_id
   type    = "CNAME"
   ttl     = "60"
-  records = [var.route53_domain_proxy]
 }

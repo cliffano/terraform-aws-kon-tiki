@@ -81,3 +81,11 @@ variable "lambda_origin_request_arn" {
   default     = "kon-tiki-lambda-origin-request-arn"
   description = "ARN of Lambda Function to be used as origin-request CloudFront Lambda@Edge"
 }
+
+variable "tags" {
+  type        = object
+  default     = {
+    project = "kon-tiki"
+  }
+  description = "Tags to be added to all taggable AWS resources provisioned by Terraform Kon-Tiki"
+}
