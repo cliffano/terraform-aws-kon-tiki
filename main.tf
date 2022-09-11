@@ -121,16 +121,14 @@ resource "aws_cloudfront_distribution" "cdn" {
     }
 
     lambda_function_association {
-      count        = var.enable_lambda_viewer_request ? 1 : 0
-      lambda_arn   = var.lambda_viewer_request_arn
+      lambda_arn   = var.enable_lambda_viewer_request ? var.lambda_viewer_request_arn : null
 
       event_type   = "viewer-request"
       include_body = false
     }
 
     lambda_function_association {
-      count        = var.enable_lambda_origin_request ? 1 : 0
-      lambda_arn   = var.lambda_origin_request_arn
+      lambda_arn   = var.enable_lambda_origin_request ? var.lambda_origin_request_arn : null
 
       event_type   = "origin-request"
       include_body = false
