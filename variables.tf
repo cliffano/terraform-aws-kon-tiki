@@ -83,7 +83,7 @@ variable "lambda_origin_request_arn" {
 }
 
 variable "tags" {
-  type        = object
+  type        = map
   default     = {
     project = "kon-tiki"
   }
