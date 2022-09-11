@@ -46,18 +46,6 @@ variable "route53_zone_id" {
   description = "Route53 hosted zone ID where the domain will be added to"
 }
 
-variable "enable_route53_domain_proxy" {
-  type        = bool
-  default     = false
-  description = "Enable the provisioning of Route53 CNAME record proxy"
-}
-
-variable "route53_domain_proxy" {
-  type        = string
-  default     = "kon-tiki-route53-domain-proxy"
-  description = "Name of Route53 CNAME record which will proxy inbound requests prior to reaching the CDN"
-}
-
 variable "enable_lambda_viewer_request" {
   type        = bool
   default     = false
