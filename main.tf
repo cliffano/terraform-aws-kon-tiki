@@ -52,8 +52,6 @@ resource "aws_s3_bucket_public_access_block" "site_private" {
   block_public_policy     = true
   ignore_public_acls      = true
   restrict_public_buckets = true
-
-  tags = var.tags
 }
 
 resource "aws_s3_bucket" "extras" {
@@ -164,8 +162,6 @@ resource "aws_route53_record" "domain" {
     zone_id                = aws_cloudfront_distribution.cdn.hosted_zone_id
     evaluate_target_health = true
   }
-
-  tags = var.tags
 }
 
 resource "aws_route53_record" "domain_proxy" {
