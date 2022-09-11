@@ -46,7 +46,6 @@ EOF
 }
 
 resource "aws_s3_bucket_public_access_block" "site_private" {
-
   bucket = aws_s3_bucket.site.id
 
   block_public_acls       = true
@@ -59,11 +58,9 @@ resource "aws_s3_bucket_public_access_block" "site_private" {
 
 resource "aws_s3_bucket" "extras" {
   count  = var.enable_s3_bucket_extras ? 1 : 0
-  bucket = var.s3_bucket_extras
 
-  acl    = "private"
-  tags   = var.tags
-
+  bucket        = var.s3_bucket_extras
+  acl           = "private"
   force_destroy = true
 
   tags = var.tags
@@ -177,8 +174,8 @@ resource "aws_route53_record" "domain" {
 
 resource "aws_route53_record" "domain_proxy" {
   count   = var.enable_route53_domain_proxy ? 1 : 0
-  records = [var.route53_domain_proxy]
 
+  records = [var.route53_domain_proxy]
   name    = var.route53_domain
   zone_id = var.route53_zone_id
   type    = "CNAME"
