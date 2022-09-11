@@ -57,7 +57,7 @@ resource "aws_s3_bucket_public_access_block" "site_private" {
 
 resource "aws_s3_bucket" "extras" {
     count  = var.enable_s3_bucket_extras ? 1 : 0
-    bucket = var.s3_bucket_extras[0]
+    bucket = var.s3_bucket_extras
 
     acl    = "private"
     tags   = var.tags
@@ -67,7 +67,7 @@ resource "aws_s3_bucket" "extras" {
 
 resource "aws_s3_bucket_public_access_block" "extras_private" {
     count  = var.enable_s3_bucket_extras ? 1 : 0
-    bucket = aws_s3_bucket.extras[0].id
+    bucket = aws_s3_bucket.extras.id
 
     block_public_acls       = true
     block_public_policy     = true
@@ -122,7 +122,7 @@ resource "aws_cloudfront_distribution" "cdn" {
 
     lambda_function_association {
       count        = var.enable_lambda_viewer_request ? 1 : 0
-      lambda_arn   = var.lambda_viewer_request_arn[0]
+      lambda_arn   = var.lambda_viewer_request_arn
 
       event_type   = "viewer-request"
       include_body = false
@@ -130,7 +130,7 @@ resource "aws_cloudfront_distribution" "cdn" {
 
     lambda_function_association {
       count        = var.enable_lambda_origin_request ? 1 : 0
-      lambda_arn   = var.lambda_origin_request_arn[0]
+      lambda_arn   = var.lambda_origin_request_arn
 
       event_type   = "origin-request"
       include_body = false
@@ -169,7 +169,7 @@ resource "aws_route53_record" "domain" {
 
 resource "aws_route53_record" "domain_proxy" {
   count   = var.enable_route53_domain_proxy ? 1 : 0
-  records = [var.route53_domain_proxy[0]]
+  records = [var.route53_domain_proxy]
 
   name    = var.route53_domain
   zone_id = var.route53_zone_id
