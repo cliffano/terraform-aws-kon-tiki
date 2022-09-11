@@ -67,7 +67,7 @@ resource "aws_s3_bucket" "extras" {
 
 resource "aws_s3_bucket_public_access_block" "extras_private" {
     count  = var.enable_s3_bucket_extras ? 1 : 0
-    bucket = aws_s3_bucket.extras.id
+    bucket = aws_s3_bucket.extras[0].id
 
     block_public_acls       = true
     block_public_policy     = true
