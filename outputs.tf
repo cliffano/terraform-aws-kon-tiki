@@ -22,10 +22,10 @@ output  "cloudfront_distribution_cdn_hosted_zone_id" {
   value = aws_cloudfront_distribution.cdn.hosted_zone_id
 }
 
-output  "route53_record_domain_arn" {
-  value = aws_route53_record.domain.arn
+output  "route53_record_domain_name" {
+  value = aws_route53_record.domain.name
 }
 
-output  "route53_record_domain_zone_id" {
-  value = aws_route53_record.domain.zone_id
+output  "route53_record_domain_fqdn" {
+  value = aws_route53_record.domain.fqdn
 }
