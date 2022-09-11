@@ -74,14 +74,10 @@ resource "aws_s3_bucket_public_access_block" "extras_private" {
   block_public_policy     = true
   ignore_public_acls      = true
   restrict_public_buckets = true
-
-  tags = var.tags
 }
 
 resource "aws_cloudfront_origin_access_identity" "cdn_oai" {
   comment = "Origin access identity for destination S3-${var.s3_bucket_site}"
-
-  tags = var.tags
 }
 
 resource "aws_cloudfront_distribution" "cdn" {
@@ -180,6 +176,4 @@ resource "aws_route53_record" "domain_proxy" {
   zone_id = var.route53_zone_id
   type    = "CNAME"
   ttl     = "60"
-
-  tags = var.tags
 }
