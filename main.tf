@@ -40,43 +40,51 @@ EOF
         error_document = "404.html"
     }
 
-    tags = var.tags
-
     force_destroy = true
+
+    tags = var.tags
 }
 
 resource "aws_s3_bucket_public_access_block" "site_private" {
 
-    bucket = aws_s3_bucket.site.id
+  bucket = aws_s3_bucket.site.id
 
-    block_public_acls       = true
-    block_public_policy     = true
-    ignore_public_acls      = true
-    restrict_public_buckets = true
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+
+  tags = var.tags
 }
 
 resource "aws_s3_bucket" "extras" {
-    count  = var.enable_s3_bucket_extras ? 1 : 0
-    bucket = var.s3_bucket_extras
+  count  = var.enable_s3_bucket_extras ? 1 : 0
+  bucket = var.s3_bucket_extras
 
-    acl    = "private"
-    tags   = var.tags
+  acl    = "private"
+  tags   = var.tags
 
-    force_destroy = true
+  force_destroy = true
+
+  tags = var.tags
 }
 
 resource "aws_s3_bucket_public_access_block" "extras_private" {
-    count  = var.enable_s3_bucket_extras ? 1 : 0
-    bucket = aws_s3_bucket.extras[0].id
+  count  = var.enable_s3_bucket_extras ? 1 : 0
+  bucket = aws_s3_bucket.extras[0].id
 
-    block_public_acls       = true
-    block_public_policy     = true
-    ignore_public_acls      = true
-    restrict_public_buckets = true
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+
+  tags = var.tags
 }
 
 resource "aws_cloudfront_origin_access_identity" "cdn_oai" {
   comment = "Origin access identity for destination S3-${var.s3_bucket_site}"
+
+  tags = var.tags
 }
 
 resource "aws_cloudfront_distribution" "cdn" {
@@ -143,12 +151,12 @@ resource "aws_cloudfront_distribution" "cdn" {
     }
   }
 
-  tags = var.tags
-
   viewer_certificate {
     acm_certificate_arn = var.acm_certificate_arn
     ssl_support_method  = "sni-only"
   }
+
+  tags = var.tags
 }
 
 resource "aws_route53_record" "domain" {
@@ -163,6 +171,8 @@ resource "aws_route53_record" "domain" {
     zone_id                = aws_cloudfront_distribution.cdn.hosted_zone_id
     evaluate_target_health = true
   }
+
+  tags = var.tags
 }
 
 resource "aws_route53_record" "domain_proxy" {
@@ -173,4 +183,6 @@ resource "aws_route53_record" "domain_proxy" {
   zone_id = var.route53_zone_id
   type    = "CNAME"
   ttl     = "60"
+
+  tags = var.tags
 }
