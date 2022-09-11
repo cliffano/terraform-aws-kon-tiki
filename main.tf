@@ -119,10 +119,17 @@ resource "aws_cloudfront_distribution" "cdn" {
       }
     }
 
-    lambda_function_association = [
-      var.enable_lambda_viewer_request ? { lambda_arn = var.lambda_viewer_request_arn, event_type = "viewer-request", include_body = false } : {},
-      var.enable_lambda_origin_request ? { lambda_arn = var.lambda_origin_request_arn, event_type = "origin-request", include_body = false } : {}
-    ]
+    lambda_function_association {
+      lambda_arn   = var.enable_lambda_viewer_request ? var.lambda_viewer_request_arn : nil
+      event_type   = "viewer-request"
+      include_body = false
+    }
+
+    lambda_function_association {
+      lambda_arn   = var.enable_lambda_origin_request ? var.lambda_origin_request_arn : nil
+      event_type   = "origin-request"
+      include_body = false
+    }
   }
 
   price_class = "PriceClass_100"
