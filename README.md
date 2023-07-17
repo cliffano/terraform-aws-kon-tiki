@@ -30,30 +30,30 @@ Installation
 
 Copy paste below code into your Terraform configuration, insert the variables, and run `terraform init`:
 
-  module "kon_tiki" {
-    source  = "cliffano/terraform-kon-tiki"
-    version = "1.0.0"
-  }
+    module "kon_tiki" {
+      source  = "cliffano/terraform-kon-tiki"
+      version = "1.0.0"
+    }
 
 Usage
 -----
 
-  module "kon_tiki" {
-    acm_certificate_arn          = "<acm_certificate_arn>"
-    route53_domain               = var.route53_domain
-    route53_zone_id              = "<route53_zone_id>"
-    s3_bucket_cdn_log            = var.s3_bucket_cdn_log
-    s3_bucket_site               = var.s3_bucket_site
-    enable_s3_bucket_extras      = var.enable_s3_bucket_extras
-    enable_lambda_viewer_request = true
-    enable_lambda_origin_request = true
-    lambda_origin_request_arn    = var.lambda_origin_request_arn
-    region                       = "ap-southeast-2"
-    tags = {
-      tag1 = "value1"
-      tag2 = "value2"
+    module "kon_tiki" {
+      acm_certificate_arn          = "<acm_certificate_arn>"
+      route53_domain               = var.route53_domain
+      route53_zone_id              = "<route53_zone_id>"
+      s3_bucket_cdn_log            = var.s3_bucket_cdn_log
+      s3_bucket_site               = var.s3_bucket_site
+      enable_s3_bucket_extras      = var.enable_s3_bucket_extras
+      enable_lambda_viewer_request = true
+      enable_lambda_origin_request = true
+      lambda_origin_request_arn    = var.lambda_origin_request_arn
+      region                       = "ap-southeast-2"
+      tags = {
+        tag1 = "value1"
+        tag2 = "value2"
+      }
     }
-  }
 
 FAQ
 ---
