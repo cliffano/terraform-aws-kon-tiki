@@ -17,7 +17,7 @@ init:
 
 lint: init
 	terraform validate
-	tflint .
+	tflint --chdir=.
 
 doc:
 	sed -zi 's/# Terraform Doc.*/# Terraform Doc/' README.md
