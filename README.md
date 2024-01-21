@@ -3,10 +3,10 @@
 [![Build Status](https://github.com/cliffano/terraform-aws-kon-tiki/workflows/CI/badge.svg)](https://github.com/cliffano/terraform-aws-kon-tiki/actions?query=workflow%3ACI)
 <br/>
 
-Terraform Kon-Tiki
-------------------
+Terraform AWS Kon-Tiki
+----------------------
 
-Terraform Kon-Tiki is a Terraform module for provisioning infrastructure on AWS for hosting static websites with https support.
+Terraform AWS Kon-Tiki is a Terraform module for provisioning infrastructure on AWS for hosting static websites with https support and request processing hooks on the CDN.
 
 This module provisions the following AWS resources:
 
@@ -16,9 +16,9 @@ This module provisions the following AWS resources:
 
 It also provides the following optional AWS resources:
 
-* Viewer Request Lambda - for processing request after it's received from viewer
-* Origin Request Lambda - for processing request before it's forwarded to origin
-* Extras S3 Bucket - for storing any additional asset that requires pre-processing before being stored in Site S3 Bucket
+* Viewer Request Lambda - Lambda@Edge function for processing request after it's received from viewer (before it hits the CDN), e.g. for adding HTTP basic authentication
+* Origin Request Lambda - Lambda@Edge function for processing request before it's forwarded to origin (before it hits the S3 bucket), e.g. for serving `index.html` as default page for every path
+* Extras S3 Bucket - for storing any additional assets that requires pre-processing before being stored in Site S3 Bucket
 
 Architecture
 ------------
