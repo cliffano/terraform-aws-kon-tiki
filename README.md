@@ -6,7 +6,7 @@
 Terraform AWS Kon-Tiki
 ----------------------
 
-Terraform AWS Kon-Tiki is a Terraform module for provisioning infrastructure on AWS for hosting static websites with https support and request processing hooks on the CDN.
+Terraform AWS Kon-Tiki is a Terraform module for provisioning infrastructure on AWS for hosting static websites with https support and request processing functions on the CDN.
 
 This module provisions the following AWS resources:
 
@@ -47,6 +47,7 @@ Usage
       enable_s3_bucket_extras      = var.enable_s3_bucket_extras
       enable_lambda_viewer_request = true
       enable_lambda_origin_request = true
+      lambda_viewer_request_arn    = var.lambda_viewer_request_arn
       lambda_origin_request_arn    = var.lambda_origin_request_arn
       region                       = "ap-southeast-2"
       tags = {
