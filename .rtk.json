@@ -1,23 +1,15 @@
 {
   "resources": [
     {
-      "path": "package.json",
-      "type": "json",
+      "path": "variables.tf",
+      "type": "hcl",
       "params": {
-        "property": "version"
+        "property": "tags.default.generator_version"
       }
     },
     {
       "path": "CHANGELOG.md",
       "type": "keep-a-changelog"
-    },
-    {
-      "path": ".github/workflows/publish-workflow.yaml",
-      "type": "yaml",
-      "params": {
-        "property": "jobs.build.steps[0].with.ref",
-        "post_release_value": "master"
-      }
     }
   ]
 }

@@ -73,7 +73,8 @@ variable "lambda_origin_request_arn" {
 variable "tags" {
   type        = map
   default     = {
-    project = "kon-tiki"
+    generator_name    = "kon-tiki"
+    generator_version = "0.9.0"
   }
   description = "Tags to be added to all taggable AWS resources provisioned by Terraform Kon-Tiki"
 }
