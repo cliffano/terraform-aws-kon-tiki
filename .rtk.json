@@ -1,10 +1,10 @@
 {
   "resources": [
     {
-      "path": "variables.tf",
-      "type": "hcl",
+      "path": "Makefile",
+      "type": "makefile",
       "params": {
-        "property": "tags.default.generator_version"
+        "variable": "version"
       }
     },
     {

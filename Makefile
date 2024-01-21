@@ -1,3 +1,6 @@
+# TODO: remove temporary version variable when RTK is upgraded to a version that supports HCL2 resource type
+version ?= 0.9.0
+
 ci: clean stage deps init lint doc
 
 clean:
