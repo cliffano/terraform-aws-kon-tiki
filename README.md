@@ -117,12 +117,12 @@ No modules.
 | <a name="input_s3_bucket_cdn_log"></a> [s3\_bucket\_cdn\_log](#input\_s3\_bucket\_cdn\_log) | Name of S3 bucket for storing CDN log | `string` | `null` | no |
 | <a name="input_s3_bucket_extras"></a> [s3\_bucket\_extras](#input\_s3\_bucket\_extras) | Name of S3 bucket for storing extra files | `string` | `"kon-tiki-s3-bucket-extras"` | no |
 | <a name="input_s3_bucket_site"></a> [s3\_bucket\_site](#input\_s3\_bucket\_site) | Name of S3 bucket for storing web site content | `string` | `null` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | Tags to be added to all taggable AWS resources provisioned by Terraform Kon-Tiki | `map` | <pre>{<br>  "project": "kon-tiki"<br>}</pre> | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Tags to be added to all taggable AWS resources provisioned by Terraform Kon-Tiki | `map` | <pre>{<br>  "generator_name": "kon-tiki",<br>  "generator_version": "0.9.0"<br>}</pre> | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_cloudfront_distribution_cdn"></a> [cloudfront\_distribution\_cdn](#output\_cloudfront\_distribution\_cdn) | n/a |
-| <a name="output_route53_record_domain"></a> [route53\_record\_domain](#output\_route53\_record\_domain) | n/a |
-| <a name="output_s3_bucket_site"></a> [s3\_bucket\_site](#output\_s3\_bucket\_site) | n/a |
+| <a name="output_cloudfront_distribution_cdn"></a> [cloudfront\_distribution\_cdn](#output\_cloudfront\_distribution\_cdn) | Provisioned CloudFront distribution resource |
+| <a name="output_route53_record_domain"></a> [route53\_record\_domain](#output\_route53\_record\_domain) | Provisioned Route53 record resource |
+| <a name="output_s3_bucket_site"></a> [s3\_bucket\_site](#output\_s3\_bucket\_site) | Provisioned S3 bucket resource |
