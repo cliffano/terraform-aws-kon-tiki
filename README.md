@@ -1,6 +1,6 @@
-<img align="right" src="https://raw.github.com/cliffano/terraform-kon-tiki/main/avatar.jpg" alt="Avatar"/>
+<img align="right" src="https://raw.github.com/cliffano/terraform-aws-kon-tiki/main/avatar.jpg" alt="Avatar"/>
 
-[![Build Status](https://github.com/cliffano/terraform-kon-tiki/workflows/CI/badge.svg)](https://github.com/cliffano/terraform-kon-tiki/actions?query=workflow%3ACI)
+[![Build Status](https://github.com/cliffano/terraform-aws-kon-tiki/workflows/CI/badge.svg)](https://github.com/cliffano/terraform-aws-kon-tiki/actions?query=workflow%3ACI)
 <br/>
 
 Terraform Kon-Tiki
@@ -31,7 +31,7 @@ Installation
 Copy paste below code into your Terraform configuration, insert the variables, and run `terraform init`:
 
     module "kon_tiki" {
-      source  = "cliffano/terraform-kon-tiki"
+      source  = "cliffano/terraform-aws-kon-tiki"
       version = "1.0.0"
     }
 
