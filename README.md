@@ -39,17 +39,18 @@ Usage
 -----
 
     module "kon_tiki" {
-      acm_certificate_arn          = "<acm_certificate_arn>"
-      route53_domain               = var.route53_domain
-      route53_zone_id              = "<route53_zone_id>"
-      s3_bucket_cdn_log            = var.s3_bucket_cdn_log
-      s3_bucket_site               = var.s3_bucket_site
-      enable_s3_bucket_extras      = var.enable_s3_bucket_extras
-      enable_lambda_viewer_request = true
-      enable_lambda_origin_request = true
-      lambda_viewer_request_arn    = var.lambda_viewer_request_arn
-      lambda_origin_request_arn    = var.lambda_origin_request_arn
       region                       = "ap-southeast-2"
+      acm_certificate_arn          = "arn:aws:acm:us-east-1:123456789012:certificate/21f01ef7-f64d-427a-9b5c-55178a46d6a0"
+      route53_domain               = "somesite.somedomain.com"
+      route53_zone_id              = "Z09836883JG7GHJIUIPJA"
+      s3_bucket_cdn_log            = "somecdnlog"
+      s3_bucket_site               = "somesite.somedomain.com"
+      enable_s3_bucket_extras      = true
+      s3_bucket_extras             = "someextras.somedomain.com"
+      enable_lambda_viewer_request = true
+      lambda_viewer_request_arn    = "arn:aws:lambda:us-east-1:123456789012:function:serverlessrepo-wehr-enter-LambdaAuthorizerBasicAut-wnvuW5BxvLWY:1"
+      enable_lambda_origin_request = true
+      lambda_origin_request_arn    = "arn:aws:lambda:us-east-1:123456789012:function:serverlessrepo-digital-sa-StandardRedirectsForClou-BLIGK4EUES3T:1"
       tags = {
         tag1 = "value1"
         tag2 = "value2"
