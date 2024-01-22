@@ -12,10 +12,6 @@ provider "aws" {
     region  = var.region
 }
 
-data "aws_s3_bucket" "cdn_log" {
-  bucket = var.s3_bucket_cdn_log
-}
-
 resource "aws_s3_bucket" "site" {
     bucket = var.s3_bucket_site
     acl = "private"
@@ -97,9 +93,11 @@ resource "aws_cloudfront_distribution" "cdn" {
   comment             = "CDN distribution for ${var.s3_bucket_site}"
   default_root_object = "index.html"
 
+  # CDN log bucket name is appended with s3.amazonaws.com in order to support
+  # cross-region bucket usage
   logging_config {
     include_cookies = false
-    bucket          = data.aws_s3_bucket.cdn_log.bucket_domain_name
+    bucket          = "${var.s3_bucket_cdn_log}.s3.amazonaws.com"
     prefix          = var.s3_bucket_site
   }
 
