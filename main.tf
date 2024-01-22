@@ -12,6 +12,10 @@ provider "aws" {
     region  = var.region
 }
 
+data "aws_s3_bucket" "cdn_log" {
+  bucket = var.s3_bucket_cdn_log
+}
+
 resource "aws_s3_bucket" "site" {
     bucket = var.s3_bucket_site
     acl = "private"
@@ -95,7 +99,7 @@ resource "aws_cloudfront_distribution" "cdn" {
 
   logging_config {
     include_cookies = false
-    bucket          = var.s3_bucket_cdn_log
+    bucket          = data.aws_s3_bucket.cdn_log.bucket_domain_name
     prefix          = var.s3_bucket_site
   }
 
