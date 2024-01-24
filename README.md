@@ -31,14 +31,16 @@ Installation
 Copy paste below code into your Terraform configuration, insert the variables, and run `terraform init`:
 
     module "kon_tiki" {
-      source  = "cliffano/terraform-aws-kon-tiki"
-      version = "1.0.0"
+      source  = "cliffano/kon-tiki/aws"
+      version = "0.10.0"
     }
 
 Usage
 -----
 
     module "kon_tiki" {
+      source                       = "cliffano/kon-tiki/aws"
+      version                      = "0.10.0"
       region                       = "ap-southeast-2"
       acm_certificate_arn          = "arn:aws:acm:us-east-1:123456789012:certificate/21f01ef7-f64d-427a-9b5c-55178a46d6a0"
       route53_domain               = "somesite.somedomain.com"
