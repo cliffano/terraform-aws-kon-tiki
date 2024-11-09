@@ -12,7 +12,7 @@ stage:
 deps: stage
 	curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
 	curl -sSLo stage/terraform-docs.tar.gz https://terraform-docs.io/dl/v0.16.0/terraform-docs-v0.16.0-`uname`-amd64.tar.gz
-	cd stage/ && tar -xzf terraform-docs.tar.gz && chmod +x terraform-docs
+	cd stage/ && tar -xzf terraform-docs.tar.gz --no-same-owner && chmod +x terraform-docs
 
 init:
 	rm -f .terraform.lock.hcl
