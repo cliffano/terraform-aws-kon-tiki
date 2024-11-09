@@ -18,6 +18,9 @@ init:
 	rm -f .terraform.lock.hcl
 	terraform init
 
+style:
+	terraform fmt -recursive
+
 lint: init
 	terraform validate
 	tflint --chdir=.
