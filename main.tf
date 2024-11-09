@@ -9,14 +9,14 @@ terraform {
 }
 
 provider "aws" {
-    region  = var.region
+  region = var.region
 }
 
 resource "aws_s3_bucket" "site" {
-    bucket = var.s3_bucket_site
-    acl = "private"
+  bucket = var.s3_bucket_site
+  acl    = "private"
 
-    policy = <<EOF
+  policy = <<EOF
 {
   "Id": "bucket_policy_site",
   "Version": "2012-10-17",
@@ -36,14 +36,14 @@ resource "aws_s3_bucket" "site" {
 }
 EOF
 
-    website {
-        index_document = "index.html"
-        error_document = "404.html"
-    }
+  website {
+    index_document = "index.html"
+    error_document = "404.html"
+  }
 
-    force_destroy = true
+  force_destroy = true
 
-    tags = var.tags
+  tags = var.tags
 }
 
 resource "aws_s3_bucket_public_access_block" "site_private" {
@@ -56,7 +56,7 @@ resource "aws_s3_bucket_public_access_block" "site_private" {
 }
 
 resource "aws_s3_bucket" "extras" {
-  count  = var.enable_s3_bucket_extras ? 1 : 0
+  count = var.enable_s3_bucket_extras ? 1 : 0
 
   bucket        = var.s3_bucket_extras
   acl           = "private"

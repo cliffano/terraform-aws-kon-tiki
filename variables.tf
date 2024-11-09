@@ -71,8 +71,8 @@ variable "lambda_origin_request_arn" {
 }
 
 variable "tags" {
-  type        = map
-  default     = {
+  type = map(any)
+  default = {
     generator_name    = "kon-tiki"
     generator_version = "0.9.0"
   }
