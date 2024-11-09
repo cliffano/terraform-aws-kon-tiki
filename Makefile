@@ -1,7 +1,7 @@
 # TODO: remove temporary version variable when RTK is upgraded to a version that supports HCL2 resource type
 version ?= 0.10.1-pre.0
 
-ci: clean stage deps init lint doc
+ci: clean stage deps init style lint doc
 
 clean:
 	rm -rf .terraform
@@ -30,4 +30,4 @@ doc:
 	stage/terraform-docs markdown . > stage/terraform-docs-output.md
 	sed -i '/# Terraform Doc/r stage/terraform-docs-output.md' README.md
 
-.PHONY: clean stage deps init lint doc
+.PHONY: clean stage deps init style lint doc
