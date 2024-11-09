@@ -86,7 +86,7 @@ A: I recommend setting up Origin Request Lambda using Lambda@Edge function from 
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.33.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.75.0 |
 
 ## Modules
 
@@ -120,7 +120,7 @@ No modules.
 | <a name="input_s3_bucket_cdn_log"></a> [s3\_bucket\_cdn\_log](#input\_s3\_bucket\_cdn\_log) | Name of S3 bucket for storing CDN log | `string` | `null` | no |
 | <a name="input_s3_bucket_extras"></a> [s3\_bucket\_extras](#input\_s3\_bucket\_extras) | Name of S3 bucket for storing extra files | `string` | `"kon-tiki-s3-bucket-extras"` | no |
 | <a name="input_s3_bucket_site"></a> [s3\_bucket\_site](#input\_s3\_bucket\_site) | Name of S3 bucket for storing web site content | `string` | `null` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | Tags to be added to all taggable AWS resources provisioned by Terraform Kon-Tiki | `map` | <pre>{<br>  "generator_name": "kon-tiki",<br>  "generator_version": "0.9.0"<br>}</pre> | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Tags to be added to all taggable AWS resources provisioned by Terraform Kon-Tiki | `map(any)` | <pre>{<br>  "generator_name": "kon-tiki",<br>  "generator_version": "0.9.0"<br>}</pre> | no |
 
 ## Outputs
 
