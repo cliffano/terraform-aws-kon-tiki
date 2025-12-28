@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+- Switch version management from Makefile to variables.tf
+
 ## 1.0.0 - 2024-11-09
 ### Added
 - Add Makefile style target

@@ -74,7 +74,7 @@ variable "tags" {
   type = map(any)
   default = {
     generator_name    = "kon-tiki"
-    generator_version = "0.9.0"
+    generator_version = "1.0.1-pre.0"
   }
   description = "Tags to be added to all taggable AWS resources provisioned by Terraform Kon-Tiki"
 }
