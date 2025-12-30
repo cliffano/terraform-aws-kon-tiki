@@ -3,12 +3,12 @@ name: CI
 on: [push, pull_request, workflow_dispatch]
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
     - uses: actions/checkout@v4
-    - uses: cliffano/command-docker-action@v1.3.0
+    - uses: cliffano/command-docker-action@v1.4.0
       with:
         command: 'make ci'
-        image: cliffano/studio:2.5.0
+        image: cliffano/studio:3.0.0
         shell: bash
         extra_path: /usr/local/go/bin:/usr/local/maven/bin:/usr/local/node/bin:/usr/local/openjdk-jdk/bin:/root/.cargo/bin:/root/go/bin
