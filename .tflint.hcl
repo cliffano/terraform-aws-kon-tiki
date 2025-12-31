@@ -1,6 +1,6 @@
 config {
   format = "compact"
-  call_module_type = true
+  call_module_type = all
   force = false
 }
 
